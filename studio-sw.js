@@ -1,7 +1,7 @@
 // Keep the installable shell scoped to this garage, including on project-site hosts.
 const prefix='truck-studio:'+new URL(self.registration.scope).pathname+':';
-const cacheName=prefix+'2026-11-studio-1';
-const shell=['./','./vehicle.html','./viewer.css','./garage.css','./studio-icon.svg','./app.webmanifest','./truck-preview.webp'];
+const cacheName=prefix+'2026-11-gallery-1';
+const shell=['./','./vehicle.html','./viewer.css','./full-view.css','./garage.css','./studio-icon.svg','./app.webmanifest','./truck-preview.webp'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(cacheName).then(cache=>cache.addAll(shell)));
 });
@@ -18,7 +18,7 @@ self.addEventListener('fetch',event=>{
     return;
   }
   if(!/^(?:[\w.-]+\.(?:js|css|gz|hdr|json|woff2|webmanifest|webp|png|svg))$/.test(file))return;
-  const immutable=/^(?:lib-[A-Z\d]+\.js|truck-[a-f\d]+\.gz)$/.test(file);
+  const immutable=/^(?:(?:lib|viewer|garage-vehicle)-[A-Z\d]+\.js|truck-[a-f\d]+\.gz)$/.test(file);
   event.respondWith((async()=>{
     const cache=await caches.open(cacheName);
     if(immutable){const match=await cache.match(request);if(match)return match;}

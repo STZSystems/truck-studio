@@ -1,0 +1,82 @@
+#enter-full-view,.full-actions button{
+  align-items:center;justify-content:center;gap:7px;border:1px solid #bfc7bb;border-radius:6px;
+  min-height:38px;padding:0 11px;background:#fafbf7f0;color:#292e27;font:650 12px/1.1 Inter,Arial,sans-serif;
+  box-shadow:0 1px 3px #1920170b;white-space:nowrap;touch-action:manipulation
+}
+#enter-full-view{position:absolute;z-index:3;top:14px;left:clamp(12px,2.1vw,34px);display:inline-flex}
+#enter-full-view svg,.full-actions svg{width:17px;height:17px;flex:none}
+#enter-full-view:hover,.full-actions button:hover{border-color:#838e80;background:white}
+.full-actions,.full-orientation-hint,.full-rail{display:none}
+html.truck-full-view,html.truck-full-view body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
+html.truck-full-view body>.mast,html.truck-full-view .workbench,html.truck-full-view body>footer,
+html.truck-full-view .visual>.scene-head,html.truck-full-view .visual>.camera-strip{display:none}
+html.truck-full-view .workspace{display:block;margin:0;padding:0;overflow:visible}
+html.truck-full-view .visual{
+  position:fixed;inset:0;z-index:9;display:flex;flex-direction:column;width:100%;height:100%;
+  height:100dvh;max-width:none;min-height:0;overflow:hidden;background:#e8ebe5
+}
+html.truck-full-view .visual #stage{
+  width:100%;height:auto;flex:1 1 0;min-height:0;max-height:none;inset:auto;overflow:hidden
+}
+html.truck-full-view .full-actions{position:absolute;z-index:4;display:flex;align-items:center;gap:6px;
+  top:max(10px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left))}
+.full-actions button{display:inline-flex;min-height:40px}
+html.truck-full-view #stage-tools{right:max(12px,env(safe-area-inset-right));top:max(10px,env(safe-area-inset-top))}
+html.truck-full-view #stage-tools button{width:39px;height:39px}
+html.truck-full-view .full-rail{
+  flex:none;display:block;background:var(--paper,#fafbf8);border-top:1px solid #c9cfc4;
+  padding:8px max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))
+}
+.full-selectors{display:flex;gap:12px;align-items:center;max-width:1060px;margin:0 auto}
+.full-field{display:flex;align-items:center;gap:6px;min-width:0;flex:1}
+.full-field>span{color:#5f675c;font:650 11px/1.2 Inter,Arial,sans-serif;white-space:nowrap}
+.full-selectors .full-field select{display:block;min-width:0;width:100%;height:34px;margin:0;padding:0 5px;background:white;
+  color:#282e25;border:1px solid #cbd1c5;border-radius:5px;font:600 12px/1.2 Inter,Arial,sans-serif;text-overflow:ellipsis}
+html.truck-full-view .visual>.transport{
+  order:3;flex:none;display:flex;align-items:center;gap:clamp(10px,2vw,24px);min-height:0;
+  border:0;padding:8px max(16px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+  background:var(--paper,#fafbf8)
+}
+html.truck-full-view .transport #play,html.truck-full-view .transport #reverse{width:44px;height:44px;flex:none}
+html.truck-full-view .transport .slider-block{max-width:none;min-width:0;flex:1 1 0}
+html.truck-full-view .transport #explode{padding:0;height:26px;touch-action:pan-y}
+html.truck-full-view .transport .slider-heading{gap:8px}
+html.truck-full-view .transport #scrub-phase{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html.truck-full-view .full-rail #tour-player:not([hidden]){
+  display:flex;align-items:center;gap:12px;max-width:1060px;margin:0 auto 6px;padding:4px 8px;border-color:#d2d7cc;background:#edf0e9
+}
+.full-rail #tour-player>div{display:flex;align-items:center;gap:10px;flex:none}
+.full-rail #tour-player button{min-height:27px;white-space:nowrap}
+.full-rail #tour-time{min-width:0;flex:1;touch-action:pan-y}
+@media(pointer:coarse) and (orientation:portrait){
+  html.truck-full-view .full-orientation-hint{
+    position:absolute;z-index:2;display:block;pointer-events:none;bottom:8%;inset-inline:8px;text-align:center;
+    color:#525b4e;font-size:12px;text-shadow:0 1px 2px #fff
+  }
+  html.truck-full-view #tour-caption:not([hidden])~.full-orientation-hint,
+  html.truck-full-view #picked:not([hidden])~.full-orientation-hint,
+  html.truck-full-view #focus-bar:not([hidden])~.full-orientation-hint{display:none}
+}
+@media(max-width:660px){
+  .full-selectors{gap:6px}
+  .full-field{display:grid;gap:2px;grid-template-columns:minmax(0,1fr)}
+  .full-field>span{font-size:10px}
+  .full-selectors .full-field select{height:36px;font-size:12px}
+  #enter-full-view{top:8px;left:10px;min-height:33px;padding:0 8px}
+}
+@media(orientation:landscape) and (max-height:540px){
+  html.truck-full-view .full-rail{padding-top:5px}
+  html.truck-full-view .visual>.transport{padding-top:2px;padding-bottom:max(4px,env(safe-area-inset-bottom))}
+  html.truck-full-view .transport .scale{font-size:10px;min-height:13px}
+  html.truck-full-view .transport #explode{height:22px}
+  html.truck-full-view .full-actions{top:max(5px,env(safe-area-inset-top))}
+  html.truck-full-view #stage-tools{top:max(5px,env(safe-area-inset-top));display:flex}
+  html.truck-full-view .full-field{display:flex;gap:5px}
+  html.truck-full-view .full-field>span{font-size:10px}
+  html.truck-full-view .full-rail #tour-player:not([hidden]){margin-bottom:3px;padding-block:1px}
+}
+@media(max-width:520px) and (orientation:landscape){
+  html.truck-full-view .full-field>span{display:none}
+  html.truck-full-view .full-actions button span{display:none}
+  html.truck-full-view .full-actions button{width:38px}
+}

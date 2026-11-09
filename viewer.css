@@ -23,3 +23,14 @@
   .section-heading{margin-bottom:10px}.section-heading h2{font-size:27px}.segments{margin:12px 0 3px}.workbench-foot{padding:6px 16px}footer{padding:5px 13px max(5px,env(safe-area-inset-bottom));font-size:9px}
 }
 @media(max-width:345px){.identity strong{font-size:19px}.mast button{font-size:11px}.mast-actions button svg{width:13px}}
+
+#scrub-phase{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-inline:8px;font-size:11px;color:var(--muted,#99a6b7);font-weight:500}
+.scale{position:relative}
+#overview-mark{position:absolute;left:38%;transform:translateX(-50%);top:-4px;padding:2px 6px;min-height:18px;border:0;background:transparent;color:#854120;text-decoration:underline;text-underline-offset:2px;font:inherit;cursor:pointer}
+#overview-mark:focus-visible{outline:1px solid currentColor}
+
+#ride-steps:not([hidden]){display:inline-flex;align-items:center;margin-right:5px;gap:4px}
+#ride-steps button{display:grid;place-items:center;width:32px;height:26px;border:1px solid #c6ccc2;background:#f4f5f1;color:var(--ink);border-radius:4px}
+#ride-steps button:disabled{opacity:.42}
+#ride-steps svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8}
+@media(pointer:coarse){#ride-steps button{width:36px;height:30px}}

@@ -6,7 +6,7 @@
   <title>F-250 Super Duty · Truck Studio</title><meta name="description" content="Customize a Ford F-250 Limited, fly through its powertrain and take apart 4,580 individually moving pieces.">
   <meta property="og:type" content="website"><meta property="og:site_name" content="Truck Studio"><meta property="og:title" content="F-250 Limited · Truck Studio"><meta property="og:description" content="Open a custom build, fly under the hood and explore 4,580 moving parts."><meta property="og:image" content="https://stzsystems.github.io/truck-studio/share-preview.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="./truck-c9411c908739.gz" as="fetch" crossorigin><link rel="icon" href="./studio-icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./app-180.png"><link rel="manifest" href="./app.webmanifest">
-  <link rel="preload" as="font" href="./barlow-condensed-latin-700-normal.woff2" type="font/woff2" crossorigin><link rel="stylesheet" href="./viewer.css">
+  <link rel="preload" as="font" href="./barlow-condensed-latin-700-normal.woff2" type="font/woff2" crossorigin><link rel="stylesheet" href="./viewer.css"><link rel="stylesheet" href="./full-view.css">
 </head>
 <body>
   <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -38,17 +38,17 @@
       </div>
       <div class="camera-strip"><div class="camera-tabs" aria-label="Camera views"><button data-view="" aria-pressed="true">Exterior</button><button data-view="dash-console">Cabin</button><button data-view="underhood">Under hood</button><button data-view="gearbox">Transmission</button></div><div class="browse-wrap"><button id="browse" aria-label="Find a part" aria-expanded="false" aria-controls="parts-panel"><svg><use href="#search"/></svg><span>Find part</span></button>
         <section id="parts-panel" hidden><input id="part-search" type="search" aria-label="Search parts" placeholder="Find a part or assembly"><small id="result-count"></small><div id="part-results"></div></section></div></div>
-      <section class="transport" aria-label="Disassembly controls"><button id="play" class="play" aria-label="Play disassembly" disabled><svg><use href="#play-icon"/></svg></button><div class="slider-block"><div class="slider-heading"><label for="explode">Disassembly</label><output id="percent" for="explode">0%</output></div><input id="explode" type="range" min="0" max="1000" step="1" value="0" style="--progress:0%" disabled><div class="scale"><span>Assembled</span><span id="end-label">Exploded</span></div></div><button id="reverse" title="Reassemble" aria-label="Reassemble truck" disabled><svg><use href="#fold"/></svg></button></section>
+      <section class="transport" aria-label="Disassembly controls"><button id="play" class="play" aria-label="Play disassembly" disabled><svg><use href="#play-icon"/></svg></button><div class="slider-block"><div class="slider-heading"><label id="slider-label" for="explode">Disassembly</label><span id="scrub-phase" hidden></span><span id="ride-steps" hidden><button type="button" id="ride-prev" aria-label="Previous part on the route" title="Previous part"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m12 5-5 5 5 5"/></svg></button><button type="button" id="ride-next" aria-label="Next part on the route" title="Next part"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m8 5 5 5-5 5"/></svg></button></span><output id="percent" for="explode">0%</output></div><input id="explode" type="range" min="0" max="1000" step="1" value="0" style="--progress:0%" disabled><div class="scale"><span>Assembled</span><button type="button" id="overview-mark" hidden title="Show the complete formation">Overview</button><span id="end-label">Exploded</span></div></div><button id="reverse" title="Reassemble" aria-label="Reassemble truck" disabled><svg><use href="#fold"/></svg></button></section>
     </section>
     <aside class="workbench"><div class="mode-tabs" aria-label="Workspace"><button data-mode="finish" aria-pressed="true"><svg><use href="#tune"/></svg>Configure</button><button data-mode="motion" aria-pressed="false"><svg><use href="#movie"/></svg>Motion</button></div>
       <section id="finish-panel" class="side-content"><div class="section-heading"><h2>Finish studio</h2><button id="reset-finish" class="text-btn">Reset</button></div>
         <label class="field-label" for="preset">Build preset</label><div class="preset-field"><div id="preset-chips"></div><select id="preset"></select></div>
         <div id="finish-sections" class="segments"><button data-section="Exterior" aria-pressed="true">Exterior</button><button data-section="Interior" aria-pressed="false">Interior</button></div><div id="channels"></div>
       </section>
-      <section id="motion-panel" class="side-content" hidden><div class="section-heading"><h2>Motion studio</h2></div><h3>Guided tours</h3><div id="tour-list"></div>
-        <div id="tour-player" hidden><div><button id="tour-toggle" aria-label="Pause tour">Pause</button><button id="tour-stop">Exit tour</button></div><input id="tour-time" type="range" min="0" max="1000" value="0" aria-label="Tour position"></div>
-        <h3 class="space-top">Assembly animation</h3><label class="field-label" for="assembly">Inspection view</label><select id="assembly" class="field"><option value="">Whole truck</option></select>
+      <section id="motion-panel" class="side-content" hidden><div class="section-heading"><h2>Motion studio</h2></div><label class="field-label" for="assembly">Inspection view</label><select id="assembly" class="field"><option value="">Whole truck</option></select>
         <label class="field-label" for="layout">Layout</label><select id="layout" class="field"><option value="exploded">Exploded</option><option value="line">Straight line</option><option value="wall">Parts wall</option><option value="rings">Parts rings</option></select>
+        <h3 class="space-top">Guided tours</h3><div id="tour-list"></div>
+        <div id="tour-player" hidden><div><button id="tour-toggle" aria-label="Pause tour">Pause</button><button id="tour-stop">Exit tour</button></div><input id="tour-time" type="range" min="0" max="1000" value="0" aria-label="Tour position"></div>
       </section>
       <div class="workbench-foot"><span><i></i><b id="part-count">4,580 parts</b></span><button id="install-app">Install app</button></div>
     </aside>
@@ -67,6 +67,6 @@
 <li><a href="https://spicerparts.com/ford/super-duty/2017-current" target="_blank" rel="noopener">Dana Spicer · Super Duty axles and driveshaft components</a></li>
 <li><a href="https://www.ford.com/cl/parts/body/glass-windows-and-related-components/ford/f250-super-duty/2022?currentPage=1" target="_blank" rel="noopener">Ford · crew-cab window components</a></li></ul>
 <a class="blend-link" href="./F250-Chrome-Studio.blend" download>Download Blender scene</a></dialog>
-  <script type="module" src="./viewer.js"></script>
+  <script type="module" src="./viewer-5O2UYZHY.js"></script>
 </body></html>
 
