@@ -1,5 +1,6 @@
 // Keep the installable shell scoped to this garage, including on project-site hosts.
 const prefix='truck-studio:'+new URL(self.registration.scope).pathname+':';
+// Choreography releases reuse the hashed truck model already on the phone.
 const cacheName=prefix+'2026-11-gallery-1';
 const shell=['./','./vehicle.html','./viewer.css','./full-view.css','./garage.css','./studio-icon.svg','./app.webmanifest','./truck-preview.webp'];
 self.addEventListener('install',event=>{
@@ -14,7 +15,16 @@ self.addEventListener('fetch',event=>{
   const file=url.pathname.slice(base.pathname.length);
   if(file.startsWith('api/')||file.startsWith('garage-models/')||file==='garage-catalog.json'||file.endsWith('.blend'))return;
   if(request.mode==='navigate'){
-    event.respondWith(fetch(request).catch(()=>caches.match(new URL(file==='vehicle.html'?'vehicle.html':'./',base).href)));
+    const shellKey=new URL(file==='vehicle.html'?'vehicle.html':'./',base).href;
+    event.respondWith((async()=>{
+      try{
+        const response=await fetch(request);
+        if(response.ok && (file===''||file==='index.html'||file==='vehicle.html')){
+          const copy=response.clone();event.waitUntil(caches.open(cacheName).then(cache=>cache.put(shellKey,copy)).catch(()=>{}));
+        }
+        return response;
+      }catch(error){const saved=await caches.match(shellKey);if(saved)return saved;throw error;}
+    })());
     return;
   }
   if(!/^(?:[\w.-]+\.(?:js|css|gz|hdr|json|woff2|webmanifest|webp|png|svg))$/.test(file))return;
