@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "Truck Studio",
+  "short_name": "Truck Studio",
+  "description": "Build, customize and explore your vehicle garage.",
+  "lang": "en",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#20221f",
+  "background_color": "#e9ebe7",
+  "icons": [
+    {"src":"./app-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"./app-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"./maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ],
+  "shortcuts":[
+    {"name":"My Garage","url":"./?garage=1","icons":[{"src":"./app-192.png","sizes":"192x192"}]},
+    {"name":"Under the hood","url":"./?tour=hood","icons":[{"src":"./app-192.png","sizes":"192x192"}]}
+  ]
+}

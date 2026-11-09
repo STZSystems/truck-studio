@@ -1,0 +1,57 @@
+@font-face{font-family:'Barlow Condensed';src:url('./barlow-condensed-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Inter;src:url('./inter.woff2') format('woff2');font-weight:100 900;font-display:swap}
+.garage-dialog,.vehicle-page {
+  --garage-ink:#252524;--garage-muted:#64635e;--garage-paper:#f9f8f5;--garage-line:#d9d7d0;--garage-accent:#ed5528;
+  font-family:Inter,Arial,sans-serif;color:var(--garage-ink);font-size:14px;line-height:1.4;
+}
+.garage-dialog,.garage-dialog *,.vehicle-page,.vehicle-page *{box-sizing:border-box}
+.garage-dialog[open]{display:block;margin:auto;width:min(620px,calc(100% - 24px));max-width:none;height:auto;max-height:min(90dvh,850px);padding:0;color:var(--garage-ink);border:1px solid var(--garage-line);border-radius:18px;background:var(--garage-paper);overflow:auto;box-shadow:0 16px 100px #1d170f58}
+.garage-dialog::backdrop{background:#211f1a75;backdrop-filter:blur(3px)}
+.garage-dialog [hidden],.vehicle-page [hidden]{display:none!important}
+.garage-box{padding:24px}
+.garage-head,.garage-bar,.garage-form-actions,.garage-card-actions,.vehicle-header,.vehicle-tools{display:flex;align-items:center;gap:10px}
+.garage-dialog .garage-head{position:static;justify-content:space-between;background:transparent;box-shadow:none;height:auto;padding:0;margin:0 0 18px;border:none;color:var(--garage-ink)}
+.garage-head h2,.garage-dialog h3,.vehicle-page h1{margin:0;letter-spacing:-.045em;font-weight:700}
+.garage-head h2{font-size:30px}.garage-dialog h3{font-size:24px;margin:9px 0 10px}
+.garage-dialog :is(button,a),.vehicle-page :is(button,.vehicle-button){display:inline-flex;align-items:center;justify-content:center;gap:5px;margin:0;border:1px solid var(--garage-line);border-radius:7px;padding:8px 12px;background:white;color:var(--garage-ink);font:600 13px/1.2 Inter,Arial,sans-serif;text-decoration:none;cursor:pointer;min-height:36px}
+.garage-dialog :is(button,a):hover,.vehicle-page :is(button,.vehicle-button):hover{border-color:#929087}
+.garage-dialog :focus-visible,.vehicle-page :focus-visible{outline:2px solid var(--garage-accent);outline-offset:3px}
+.garage-dialog .garage-close{font-family:Arial,sans-serif;font-size:24px;border:0;background:transparent;min-width:40px;min-height:40px;padding:0}
+.garage-dialog .garage-primary,.vehicle-page .vehicle-primary{background:var(--garage-accent);color:#1f1713;border-color:var(--garage-accent);font-weight:750}
+.garage-dialog .garage-back{background:transparent;border:0;padding:4px 0;color:var(--garage-muted)}
+.garage-bar{justify-content:space-between;margin-bottom:12px;color:var(--garage-muted)}
+.garage-card{display:grid;grid-template-columns:78px 1fr auto;gap:14px;align-items:center;min-height:80px;border-top:1px solid var(--garage-line);padding:12px 0;background:transparent}
+.garage-card img,.garage-card-mark{display:block;width:78px;height:56px;object-fit:cover;border-radius:5px;background:#e7e4dd}
+.garage-card-mark{display:grid;place-items:center;color:#848177}.garage-card-mark svg{width:33px;height:33px}
+.garage-card strong,.garage-card small{display:block;white-space:normal;overflow-wrap:anywhere}.garage-card strong{font-size:15px}.garage-card small{color:var(--garage-muted);font-size:12px;margin-top:3px}
+.garage-card-actions{gap:5px}.garage-card-actions a,.garage-card-actions button{font-size:12px;padding:6px 9px}
+.garage-dialog form{display:grid;gap:12px;margin:0}
+.garage-dialog :is(label,legend){font:600 12px/1.4 Inter,Arial,sans-serif;color:var(--garage-ink)}
+.garage-dialog form>label,.garage-fields label,.garage-dialog [data-source]>label{display:grid;gap:5px}
+.garage-dialog input:not([type=radio]),.garage-dialog textarea,.garage-status input{border:1px solid var(--garage-line);background:white;color:var(--garage-ink);border-radius:6px;font:400 14px/1.45 Inter,Arial,sans-serif;padding:8px 10px;min-width:0;width:100%;height:auto}
+.garage-dialog textarea{resize:vertical}.garage-dialog fieldset{border:none;margin:0;padding:0}.garage-dialog legend{margin-bottom:5px}
+.garage-fields{display:grid;grid-template-columns:.65fr 1fr 1.1fr;gap:10px}
+.garage-source{display:flex;flex-wrap:wrap;gap:5px}.garage-source label{display:flex;align-items:center;gap:6px;background:white;border:1px solid var(--garage-line);border-radius:6px;padding:7px 10px;cursor:pointer}.garage-source input{accent-color:#cf451c}
+.garage-dialog p,.garage-status,.vehicle-status{font-size:12px;color:var(--garage-muted);line-height:1.5;margin:6px 0 0;overflow-wrap:anywhere}
+.garage-status:not(:empty){margin-top:12px}.garage-dialog .garage-form-actions{justify-content:space-between}
+.garage-dialog [disabled],.vehicle-page [disabled]{opacity:.5;cursor:default}
+.vehicle-page{margin:0;background:var(--garage-paper);min-height:100dvh}
+.vehicle-header{justify-content:space-between;min-height:58px;padding:8px clamp(15px,4vw,64px);border-bottom:1px solid var(--garage-line);background:#fff}
+.vehicle-header .vehicle-home{display:inline-flex;align-items:center;gap:9px;font:700 24px/1 'Barlow Condensed','Arial Narrow',sans-serif;letter-spacing:-.025em;color:var(--garage-ink);text-decoration:none}
+.vehicle-wrap{margin:0 auto;padding:clamp(16px,2.8vw,38px);max-width:1380px}
+.vehicle-titles{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:14px}
+.vehicle-page h1{font-size:clamp(27px,4.4vw,58px);line-height:1.05;overflow-wrap:anywhere}.vehicle-meta{margin:6px 0 0;color:var(--garage-muted)}
+.vehicle-stage{position:relative;min-height:260px;height:min(57dvh,630px);overflow:hidden;background:radial-gradient(ellipse at 50% 46%,#fff 0%,#e8e8e5 84%);border:1px solid var(--garage-line);border-radius:14px}
+.vehicle-stage canvas{display:block;width:100%;height:100%;touch-action:none}
+.vehicle-message{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#46453f;text-align:center;padding:12px 15px;background:#ffffffde;border:1px solid var(--garage-line);border-radius:8px;max-width:80%}
+.vehicle-tools{margin:10px 0;flex-wrap:wrap}.vehicle-tools label{display:flex;align-items:center;gap:9px;color:var(--garage-muted);font-size:12px}
+.vehicle-tools input{accent-color:#d94a21;width:clamp(95px,17vw,230px)}.vehicle-tools select{font:inherit;border:1px solid var(--garage-line);background:white;border-radius:6px;padding:6px;max-width:180px}
+.vehicle-info{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;border-top:1px solid var(--garage-line);padding:14px 0;margin-top:13px}
+.vehicle-info p{margin:0;white-space:pre-line;overflow-wrap:anywhere}.vehicle-info .vehicle-buttons{display:flex;flex-wrap:wrap;gap:7px;flex:none}
+.vehicle-stage:fullscreen{border:0;border-radius:0}
+@media(max-width:620px){
+  .garage-box{padding:17px}.garage-card{grid-template-columns:57px 1fr auto;gap:8px}.garage-card img,.garage-card-mark{width:57px;height:48px}.garage-fields{gap:6px}
+  .garage-card-actions{flex-direction:column;align-items:stretch}.garage-card-actions :is(button,a){min-height:30px}
+  .vehicle-info{flex-direction:column}.vehicle-titles{align-items:start;flex-direction:column}.vehicle-header{min-height:49px}.vehicle-wrap{padding:15px}.vehicle-stage{height:55dvh}.vehicle-tools{gap:7px}
+}
+@media(prefers-reduced-motion:reduce){.garage-dialog *,.vehicle-page *{scroll-behavior:auto}}

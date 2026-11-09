@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9f8f5">
+  <title>Vehicle · Truck Studio</title>
+  <link rel="icon" href="./studio-icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./app-180.png">
+  <link rel="manifest" href="./app.webmanifest">
+  <link rel="stylesheet" href="./garage.css" data-garage-style>
+</head>
+<body class="vehicle-page">
+  <header class="vehicle-header">
+    <a class="vehicle-home" href="./"><img src="./studio-icon.svg" width="37" height="37" alt=""><strong>TRUCK STUDIO</strong></a>
+    <button type="button" data-open-garage>Garage</button>
+  </header>
+  <main class="vehicle-wrap">
+    <div class="vehicle-titles"><div><h1 id="vehicle-name">Vehicle</h1><p id="vehicle-meta" class="vehicle-meta"></p></div></div>
+    <section class="vehicle-stage" id="vehicle-stage" aria-label="3D vehicle viewer">
+      <canvas id="vehicle-canvas" aria-label="Drag to orbit the 3D vehicle, scroll or pinch to zoom" tabindex="0"></canvas>
+      <div class="vehicle-message" id="vehicle-message" role="status">Loading vehicle…</div>
+    </section>
+    <div class="vehicle-tools" id="vehicle-controls" hidden>
+      <button id="vehicle-reset" type="button">Reset view</button>
+      <button id="vehicle-orbit" type="button" aria-pressed="false">Orbit</button>
+      <button id="vehicle-fullscreen" type="button">Fullscreen</button>
+      <label id="vehicle-separation" hidden>Separate<input id="vehicle-spread" type="range" min="0" max="100" value="0" step="1"><output id="vehicle-percent">0%</output></label>
+      <label id="vehicle-clips" hidden>Animation<select id="vehicle-clip"></select></label>
+      <button type="button" id="vehicle-play" hidden>Play clip</button>
+    </div>
+    <div class="vehicle-info"><p id="vehicle-notes"></p>
+      <div class="vehicle-buttons"><button class="vehicle-primary" id="vehicle-add" hidden>Add to garage</button><button type="button" id="vehicle-share" hidden>Copy link</button><button type="button" id="vehicle-publish" hidden>Publish to public garage</button></div></div>
+    <p id="vehicle-owner-note" class="vehicle-status" hidden></p>
+    <div class="vehicle-status" id="vehicle-status" role="status"></div>
+  </main>
+  <script type="module" src="./garage-vehicle.js"></script>
+</body>
+</html>

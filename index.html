@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#20221f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Truck Studio">
+  <title>F-250 Super Duty · Truck Studio</title><meta name="description" content="Customize a Ford F-250 Limited, fly through its powertrain and take apart 4,580 individually moving pieces.">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="Truck Studio"><meta property="og:title" content="F-250 Limited · Truck Studio"><meta property="og:description" content="Open a custom build, fly under the hood and explore 4,580 moving parts."><meta property="og:image" content="https://stzsystems.github.io/truck-studio/share-preview.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="./truck-c9411c908739.gz" as="fetch" crossorigin><link rel="icon" href="./studio-icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./app-180.png"><link rel="manifest" href="./app.webmanifest">
+  <link rel="preload" as="font" href="./barlow-condensed-latin-700-normal.woff2" type="font/woff2" crossorigin><link rel="stylesheet" href="./viewer.css">
+</head>
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="garage-ico" viewBox="0 0 24 24"><path d="M3 20V8l9-5 9 5v12M6 20V10h12v10M7 14h10M7 17h10"/></symbol>
+    <symbol id="share-ico" viewBox="0 0 24 24"><path d="m8 9 4-4 4 4m-4-4v11M6 12H4v8h16v-8h-2"/></symbol>
+    <symbol id="tune" viewBox="0 0 24 24"><path d="M4 7h9m4 0h3M4 17h3m4 0h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+    <symbol id="movie" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></symbol>
+    <symbol id="fit" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="play-icon" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z" fill="currentColor"/></symbol><symbol id="pause" viewBox="0 0 24 24"><path d="M9 6v12m6-12v12" stroke-width="3.5"/></symbol>
+    <symbol id="fold" viewBox="0 0 24 24"><path d="m10 6-6 6 6 6M4 12h11a5 5 0 0 0 5-5"/></symbol>
+    <symbol id="camera" viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="3.4"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="m7 17 10-10M8 7h9v9"/></symbol>
+    <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol>
+  </svg>
+  <header class="mast"><div class="identity"><img src="./studio-icon.svg" width="37" height="37" alt=""><strong>TRUCK STUDIO</strong></div>
+    <div class="mast-actions"><button class="garage-launch" data-open-garage><svg><use href="#garage-ico"/></svg>Garage</button><button id="share" class="share"><svg><use href="#share-ico"/></svg><span>Share build</span></button></div>
+  </header>
+  <main class="workspace">
+    <section class="visual">
+      <div class="scene-head"><div><p class="eyebrow"><i></i> FORD SUPER DUTY</p><h1>F-250 <span>Limited</span></h1></div><div class="build-tag"><span class="paint-dot"></span><span id="build-name">Limited Blue</span></div></div>
+      <div id="stage" aria-label="Interactive vehicle"><img id="poster" alt="Blue Ford F-250 Limited with chrome trim" src="./truck-preview.webp" fetchpriority="high">
+        <canvas id="view" tabindex="0" aria-label="3D truck. Drag to orbit and pinch or scroll to zoom."></canvas>
+        <div id="stage-tools" hidden><button id="home" title="Fit view" aria-label="Reset view" disabled><svg><use href="#fit"/></svg></button><button id="zoom-in" title="Zoom in" aria-label="Zoom in"><svg><use href="#plus"/></svg></button><button id="zoom-out" title="Zoom out" aria-label="Zoom out"><svg><use href="#minus"/></svg></button><button id="capture" title="Save this view as a photo" aria-label="Save configured photo"><svg><use href="#camera"/></svg></button></div>
+        <div id="message" role="status"><span class="spinner"></span><strong>Loading 3D model</strong><small id="status-progress"></small></div>
+        <div id="picked" hidden role="status"></div><div id="focus-bar" hidden><button id="prev-part" aria-label="Previous part">‹</button><div><small id="focus-position"></small><strong id="focus-label"></strong></div><button id="next-part" aria-label="Next part">›</button><button id="overview" aria-label="Return to overview">×</button></div>
+        <div id="tour-caption" hidden><i></i><span id="shot-name"></span></div>
+      </div>
+      <div class="camera-strip"><div class="camera-tabs" aria-label="Camera views"><button data-view="" aria-pressed="true">Exterior</button><button data-view="dash-console">Cabin</button><button data-view="underhood">Under hood</button><button data-view="gearbox">Transmission</button></div><div class="browse-wrap"><button id="browse" aria-label="Find a part" aria-expanded="false" aria-controls="parts-panel"><svg><use href="#search"/></svg><span>Find part</span></button>
+        <section id="parts-panel" hidden><input id="part-search" type="search" aria-label="Search parts" placeholder="Find a part or assembly"><small id="result-count"></small><div id="part-results"></div></section></div></div>
+      <section class="transport" aria-label="Disassembly controls"><button id="play" class="play" aria-label="Play disassembly" disabled><svg><use href="#play-icon"/></svg></button><div class="slider-block"><div class="slider-heading"><label for="explode">Disassembly</label><output id="percent" for="explode">0%</output></div><input id="explode" type="range" min="0" max="1000" step="1" value="0" style="--progress:0%" disabled><div class="scale"><span>Assembled</span><span id="end-label">Exploded</span></div></div><button id="reverse" title="Reassemble" aria-label="Reassemble truck" disabled><svg><use href="#fold"/></svg></button></section>
+    </section>
+    <aside class="workbench"><div class="mode-tabs" aria-label="Workspace"><button data-mode="finish" aria-pressed="true"><svg><use href="#tune"/></svg>Configure</button><button data-mode="motion" aria-pressed="false"><svg><use href="#movie"/></svg>Motion</button></div>
+      <section id="finish-panel" class="side-content"><div class="section-heading"><h2>Finish studio</h2><button id="reset-finish" class="text-btn">Reset</button></div>
+        <label class="field-label" for="preset">Build preset</label><div class="preset-field"><div id="preset-chips"></div><select id="preset"></select></div>
+        <div id="finish-sections" class="segments"><button data-section="Exterior" aria-pressed="true">Exterior</button><button data-section="Interior" aria-pressed="false">Interior</button></div><div id="channels"></div>
+      </section>
+      <section id="motion-panel" class="side-content" hidden><div class="section-heading"><h2>Motion studio</h2></div><h3>Guided tours</h3><div id="tour-list"></div>
+        <div id="tour-player" hidden><div><button id="tour-toggle" aria-label="Pause tour">Pause</button><button id="tour-stop">Exit tour</button></div><input id="tour-time" type="range" min="0" max="1000" value="0" aria-label="Tour position"></div>
+        <h3 class="space-top">Assembly animation</h3><label class="field-label" for="assembly">Inspection view</label><select id="assembly" class="field"><option value="">Whole truck</option></select>
+        <label class="field-label" for="layout">Layout</label><select id="layout" class="field"><option value="exploded">Exploded</option><option value="line">Straight line</option><option value="wall">Parts wall</option><option value="rings">Parts rings</option></select>
+      </section>
+      <div class="workbench-foot"><span><i></i><b id="part-count">4,580 parts</b></span><button id="install-app">Install app</button></div>
+    </aside>
+  </main>
+  <footer><span>Base model by <a href="https://sketchfab.com/3d-models/ford-f250-8a0871ede6a149559f4629805439e228" target="_blank" rel="noopener">David_Holiday</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></span><div><a class="photo-link" href="./F250-studio.jpg" target="_blank" rel="noopener">Studio render</a><button id="references">Model notes</button></div></footer>
+  <dialog id="share-dialog" class="studio-dialog"><form method="dialog"><h2>Share build</h2><button aria-label="Close">×</button></form><p>Anyone with this link can open these finishes and this view.</p><label class="field-label" for="share-url">Public build link</label><input id="share-url" readonly><div class="dialog-actions"><button id="copy-link" class="primary">Copy link</button><button id="system-share">Send…</button></div></dialog>
+  <dialog id="install-dialog" class="studio-dialog"><form method="dialog"><h2>Install Truck Studio</h2><button aria-label="Close">×</button></form><div class="install-head"><img src="./app-180.png" alt="" width="58" height="58"><p id="install-help"></p></div></dialog>
+  <div id="toast" role="status" hidden></div>
+  <dialog id="reference-dialog" class="studio-dialog"><form method="dialog"><h2>Model notes</h2><button aria-label="Close notes">×</button></form>
+<p>The blue Limited crew cab follows the supplied truck and photos. The diesel and transmission use the 2026 Super Duty powertrain pairing. Internal castings, bearing counts, routing and clearances are reconstructed to fit this model.</p>
+<p>The parts counter counts individually movable objects. It includes separate rollers, seals and fasteners inside larger service assemblies.</p>
+<ul>
+<li><a href="https://www.fromtheroad.ford.com/content/dam/fordmediasite/us/en/library/2026/specs/2026_Super_Duty_Pickups_Technical_Specifications_FINAL.pdf" target="_blank" rel="noopener">Ford · 2026 Super Duty technical specifications</a></li>
+<li><a href="https://www.fordservicecontent.com/Ford_Content/Catalog/service_tip_files/Replaced_67CTB03_MCS6720.pdf" target="_blank" rel="noopener">Ford/Motorcraft · illustrated 2023 6.7L diesel engine guide</a></li><li><a href="https://www.sonnax.com/tech_resources/1618-ford-10r140-valve-body-layout" target="_blank" rel="noopener">Sonnax · 10R140 valve-body diagram</a></li>
+<li><a href="https://www.raybestospowertrain.com/friction-clutch-packs/rgpz-276" target="_blank" rel="noopener">Raybestos · diesel friction plates</a> and <a href="https://www.raybestospowertrain.com/steel-clutch-packs/stmford21" target="_blank" rel="noopener">steel plates</a></li>
+<li><a href="https://spicerparts.com/ford/super-duty/2017-current" target="_blank" rel="noopener">Dana Spicer · Super Duty axles and driveshaft components</a></li>
+<li><a href="https://www.ford.com/cl/parts/body/glass-windows-and-related-components/ford/f250-super-duty/2022?currentPage=1" target="_blank" rel="noopener">Ford · crew-cab window components</a></li></ul>
+<a class="blend-link" href="./F250-Chrome-Studio.blend" download>Download Blender scene</a></dialog>
+  <script type="module" src="./viewer.js"></script>
+</body></html>
+
