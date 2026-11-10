@@ -4,7 +4,12 @@ const prefix='truck-studio:'+new URL(self.registration.scope).pathname+':';
 const cacheName=prefix+'2026-11-gallery-1';
 const shell=['./','./vehicle.html','./viewer.css','./full-view.css','./garage.css','./studio-icon.svg','./app.webmanifest','./truck-preview.webp'];
 self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(cacheName).then(cache=>cache.addAll(shell)));
+  event.waitUntil((async()=>{
+    const cache=await caches.open(cacheName);
+    const fresh=shell.map(path=>new Request(new URL(path,self.registration.scope),{cache:'reload'}));
+    await cache.addAll(fresh);
+    await self.skipWaiting();
+  })());
 });
 self.addEventListener('activate',event=>{
   event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith(prefix)&&k!==cacheName).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
@@ -15,15 +20,19 @@ self.addEventListener('fetch',event=>{
   const file=url.pathname.slice(base.pathname.length);
   if(file.startsWith('api/')||file.startsWith('garage-models/')||file==='garage-catalog.json'||file.endsWith('.blend'))return;
   if(request.mode==='navigate'){
+    if(file!=='' && file!=='index.html' && file!=='vehicle.html')return;
     const shellKey=new URL(file==='vehicle.html'?'vehicle.html':'./',base).href;
     event.respondWith((async()=>{
+      const cache=await caches.open(cacheName);
       try{
-        const response=await fetch(request);
-        if(response.ok && (file===''||file==='index.html'||file==='vehicle.html')){
-          const copy=response.clone();event.waitUntil(caches.open(cacheName).then(cache=>cache.put(shellKey,copy)).catch(()=>{}));
+        // Pages gives HTML a ten-minute HTTP cache. Revalidate the shell so a
+        // returning visitor picks up the current viewer bundle on navigation.
+        const response=await fetch(request,{cache:'no-cache'});
+        if(response.ok){
+          const copy=response.clone();event.waitUntil(cache.put(shellKey,copy).catch(()=>{}));
         }
         return response;
-      }catch(error){const saved=await caches.match(shellKey);if(saved)return saved;throw error;}
+      }catch(error){const saved=await cache.match(shellKey);if(saved)return saved;throw error;}
     })());
     return;
   }
